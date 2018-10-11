@@ -14,6 +14,8 @@ Tên Gói (package) | Phiên Bản (version) | Chức Năng
 `multer`|1.3.1| Sử dụng để tạo middleware cho upload file
 `mysql2`|1.6.1| Sử dụng để kết nối tới MySQL database
 `sequelize`|4.38.0| Sử dụng để tạo model tương tác với database
+`app-root-path`|2.1.0| Sử dụng để lấy đường dẫn tuyệt đối của project
+`axios`|0.18.0| Sử dụng để gửi request (giống như ajax)
 
 Trên đây là những gói được `install` dưới dạng `--save`, chúng ta cần có thêm package `sequelize-cli` cài ở chế độ `Global` (bắt buộc) để chạy lệnh sequelize
 
@@ -30,6 +32,11 @@ git clone https://github.com/ducthuan1202/node-final.git node-final
 * Cài đặt package
 ```sh
 npm install
+```
+
+* Nếu thư mục `src/database` trống
+```sh
+sequelize init
 ```
 
 ## Ghi chú
