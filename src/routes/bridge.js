@@ -3,6 +3,8 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const appRoot = require("app-root-path").toString();
+const bodyParser = require('body-parser');
+const session = require('express-session');
 const app = express();
 
 const routesFolder = path.join(appRoot, "src", "routes");
@@ -17,6 +19,16 @@ const folderBackend = process.env.NODE_APP_BACKEND_FOLDER;
 const folderFrontend = process.env.NODE_APP_FRONTEND_FOLDER;
 
 app.disable("etag");
+app.set("views", path.join(appRoot, "src", "views"));
+app.set("view engine", "ejs");
+app.use(express.static("./public"));
+
+/** Login with passport */
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(session({
+//     secret: "unique-key",
+//     cookie: { maxAge: 6000 }
+// }));
 
 try {
 
@@ -26,7 +38,7 @@ try {
         fs.readdirSync(routesApi).map(file => {
             app.use(prefixApi, require(path.join(routesApi, file)));
         });
-        app.use(`^${prefixApi}(/)?`, (req, res) => res.send({ action: 404, from: 2 }));
+        app.use(`^${prefixApi}(/)?`, (req, res) => res.send({ action: 404, from: 1 }));
     }
 
     /** init routes backend */

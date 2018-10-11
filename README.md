@@ -16,6 +16,8 @@ Tên Gói (package) | Phiên Bản (version) | Chức Năng
 `sequelize`|4.38.0| Sử dụng để tạo model tương tác với database
 `app-root-path`|2.1.0| Sử dụng để lấy đường dẫn tuyệt đối của project
 `axios`|0.18.0| Sử dụng để gửi request (giống như ajax)
+`passport`|0.18.0| Sử dụng để login
+`passport-local`|0.18.0| Sử dụng để login local
 
 Trên đây là những gói được `install` dưới dạng `--save`, chúng ta cần có thêm package `sequelize-cli` cài ở chế độ `Global` (bắt buộc) để chạy lệnh sequelize
 
