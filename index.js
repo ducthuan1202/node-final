@@ -23,7 +23,9 @@ app.use(flash());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
-    secret: "unique-key-backend",
+    secret: "nauht-cud-neyugn-20210991",
+    resave: false,
+    saveUninitialized: false
 }));
 
 app.use(passport.initialize());
@@ -32,6 +34,8 @@ app.use(passport.session());
 require('./app/passport')(passport);
 
 const routesFolder = path.join(appPath, "routes");
+
+app.use("/admin", isLoggedIn);
 
 if (fs.existsSync(routesFolder)) {
     fs.readdirSync(routesFolder)
