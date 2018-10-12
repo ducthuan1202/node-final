@@ -1,6 +1,6 @@
 'use strict';
 
-const BaseSeeder = require('../../common/seeding/BaseSeeder');
+const BaseSeeder = require('../../common/BaseSeeder');
 
 module.exports = {
   up: (queryInterface, Sequelize) => { // sequelize db:seed:all

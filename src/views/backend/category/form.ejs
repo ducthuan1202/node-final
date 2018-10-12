@@ -7,7 +7,7 @@
     </div>       
 <% } %>     
 
-<%= (success.length) ? `<div style="color:green"><strong>${success}</strong></div>` : '' %>
+<%- (success.length) ? `<div style="color:green"><strong>${success}</strong></div>` : '' %>
 
 <form action="<%= model.getFormAction() %>" method="POST">
     <p>
