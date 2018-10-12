@@ -2,7 +2,8 @@ const
     path = require("path"),
     appRoot = require("app-root-path").toString(),
     bodyParser = require("body-parser"),
-    session = require("express-session"),    
+    session = require("express-session"),  
+    flash = require('connect-flash'),  
     express = require("express"),
     bridge = require("./src/routes/bridge");
 const
@@ -12,7 +13,7 @@ const
 app.set("host", host);
 app.set("port", port);
 app.set("view engine", "ejs");
-app.set("views", path.join(appRoot, "src", "views"));
+
 app.use(express.static(path.join(appRoot, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
@@ -21,6 +22,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: { maxAge: 2.592e9 }, // 2.592e9 = 2592000000 = 60*60*24*30*100 = 1 month
 }));
+app.use(flash());
 app.use(bridge);
 
 app.listen(port, () => console.log(`Server started at: <http://${host}:${port}>`));

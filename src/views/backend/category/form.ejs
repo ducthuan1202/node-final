@@ -1,0 +1,62 @@
+<% if(errors.length){ %>
+    <div style="color:red">
+        <strong>Errors!</strong>
+        <ul style="margin-top: 30px">
+            <% errors.forEach (item => { %><li><%- item %></li><% }); %>
+        </ul>
+    </div>       
+<% } %>     
+
+<%= (success.length) ? `<div style="color:green"><strong>${success}</strong></div>` : '' %>
+
+<form action="<%= model.getFormAction() %>" method="POST">
+    <p>
+        <label>Name</label><br/>
+        <input type="text" name="name" value="<%= model.name %>"/>
+    </p>
+    <p>
+        <label>Description</label><br/>
+        <input type="text" name="description" value="<%= model.description %>"/>
+    </p>
+    <p>
+        <label>Image Url</label><br/>
+        <input type="text" name="image" value="<%= model.image %>"/>
+    </p>
+    <p>
+        <label>Status (<%= model.status %>)</label><br/>
+        <select name="status">
+            <% model.getStatus().forEach(item=>{ %>
+                <option value="<%= item.value %>" <%= (item.value == model.status) ? "selected" : "" %> > <%= item.label %> </option>
+            <% }) %>
+        </select>
+    </p>
+    <p>
+        <% if(model.isNewRecord){ %>
+            <button type="submit">Create New</button>        
+        <% } else { %>
+            <button type="submit">Save Change</button>
+        <% } %>
+        <button type="reset"> Backup Data </button>
+        <button type="button" id="clearForm"> Clear Form Data </button>
+    </p>
+</form>
+
+<p>
+    <a href="<%= model.getUrlList() %>">Back</a>
+</p>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>
+
+    $(document).ready(function () {
+
+        $("#clearForm").on('click', function () {
+            $("input[type='text']").val('');
+
+        })
+
+    });
+
+</script>

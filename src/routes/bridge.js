@@ -6,6 +6,7 @@ const
     express = require("express"),
     app = express();
 app.disable("etag");
+app.set("views", path.join(appRoot.toString(), "src", "views"));
 const
     prefixBackend = process.env.NODE_APP_BACKEND_PREFIX;
 const
@@ -29,9 +30,8 @@ try {
     }
 
     /** error: api, backend, frontend */
-    app.use(`^${prefixApi}(/)?`, (req, res) => res.send({ action: 404, from: 1 }));
-    app.use(`^${prefixBackend}(/)?`, (req, res) => res.send({ action: 404, from: 2 }));
-    app.use("*", (req, res) => res.send({ action: 404, from: 3 }));
+    app.use(`^${prefixBackend}(/)?`, (req, res) => res.send({ action: 404, from: 1 }));
+    app.use("*", (req, res) => res.send({ action: 404, from: 2 }));
 
 } catch (e) {
     app.use("*", (req, res) => res.send({ action: 404, msg: e.message }));

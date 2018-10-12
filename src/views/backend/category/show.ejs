@@ -1,0 +1,51 @@
+<h1>Cateogry
+    <%= model.name %> Detail</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <td>
+            <%= model.id %>
+        </td>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <td>
+            <%= model.name %>
+        </td>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td>
+            <%- model.formatStatus() %>
+        </td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>
+            <%= model.description %>
+        </td>
+    </tr>
+    <tr>
+        <th>Image</th>
+        <td>
+            <%= model.images %>
+        </td>
+    </tr>
+    <tr>
+        <th>Created At</th>
+        <td>
+            <%= model.formatCreatedAt() %>
+        </td>
+    </tr>
+    <tr>
+        <th>Updated At</th>
+        <td>
+            <%= model.formatUpdatedAt() %>
+        </td>
+    </tr>
+
+</table>
+
+<p>
+    <a href="<%= model.getUrlList() %>">Back</a> | <a href="<%=model.getUrlEdit() %>">Edit</a>
+</p>
