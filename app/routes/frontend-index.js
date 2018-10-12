@@ -8,7 +8,7 @@ const authenticateSetting = {
 
 module.exports = (app, isLoggedIn) => {
 
-    app.get('/', (req, res) => {
+    app.get('/', isLoggedIn, (req, res) => {
         res.send({ action: 'home', user: req.user });
     });
 
