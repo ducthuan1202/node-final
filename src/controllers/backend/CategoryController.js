@@ -11,9 +11,34 @@ function getOldData(req, flashName = 'oldData') {
 const controller = {};
 
 controller.list = (req, res) => {
-    Category.findAndCountAll()
+
+    const model = Category.build({});
+    const searchContidions = {};
+    const searchOptions = {
+        sKeyword: (req.query.sKeyword || "").trim(),
+        sStatus: parseInt(req.query.sStatus || 0),
+    };
+    searchOptions.listStatus = model.getStatus();
+
+    /** filter by name */
+    if (!helper.isEmpty(searchOptions.sKeyword)) {
+        searchContidions.$or = [
+            { name: { $like: `%${searchOptions.sKeyword}%` } }
+        ];
+    }
+
+    /** filter by status */
+    if (!helper.isEmpty(searchOptions.sStatus)) {
+        searchContidions.status = searchOptions.sStatus;
+    }
+
+    Category.findAndCountAll({ where: searchContidions })
         .then(data => {
-            const shared = { data: data };
+            const shared = {
+                model: model,
+                data: data,
+                searchOptions: searchOptions,
+            };
             const view = helper.backendView("category/index");
             res.render(view, shared);
         })

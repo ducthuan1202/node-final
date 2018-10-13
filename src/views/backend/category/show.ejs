@@ -1,51 +1,84 @@
-<h1>Cateogry
-    <%= model.name %> Detail</h1>
-<table>
-    <tr>
-        <th>ID</th>
-        <td>
-            <%= model.id %>
-        </td>
-    </tr>
-    <tr>
-        <th>Name</th>
-        <td>
-            <%= model.name %>
-        </td>
-    </tr>
-    <tr>
-        <th>Status</th>
-        <td>
-            <%- model.formatStatus() %>
-        </td>
-    </tr>
-    <tr>
-        <th>Description</th>
-        <td>
-            <%= model.description %>
-        </td>
-    </tr>
-    <tr>
-        <th>Image</th>
-        <td>
-            <%= model.images %>
-        </td>
-    </tr>
-    <tr>
-        <th>Created At</th>
-        <td>
-            <%= model.formatCreatedAt() %>
-        </td>
-    </tr>
-    <tr>
-        <th>Updated At</th>
-        <td>
-            <%= model.formatUpdatedAt() %>
-        </td>
-    </tr>
+<!doctype html>
+<html lang="en">
 
-</table>
+<head>
+    <title>Show</title>
+    <%- include("../style") %>
+</head>
 
-<p>
-    <a href="<%= model.getUrlList() %>">Back</a> | <a href="<%=model.getUrlEdit() %>">Edit</a>
-</p>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="jumbotron">
+                    <h1 class="display-4">
+                        <%= `${model.name}` %>
+                    </h1>
+                    <p class="lead">
+                        <%= model.description %>
+                    </p>
+                </div>
+
+                <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>ID</th>
+                                <td>
+                                    <%= model.id %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Name</th>
+                                <td>
+                                    <%= model.name %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>
+                                    <%- model.formatStatus() %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>
+                                    <%= model.description %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Image</th>
+                                <td>
+                                    <%= model.images %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Created At</th>
+                                <td>
+                                    <%= model.formatCreatedAt() %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Updated At</th>
+                                <td>
+                                    <%= model.formatUpdatedAt() %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="100%" class="text-right">
+                                    <a class="btn btn-info" href="<%=model.getUrlEdit() %>">Edit</a>
+                                    <a class="btn btn-dark" href="<%= model.getUrlList() %>">Back</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("../script") %>
+
+</body>
+
+</html>

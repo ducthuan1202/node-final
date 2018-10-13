@@ -1,144 +1,37 @@
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+<!doctype html>
+<html lang="en">
 
-    tr {
-        border-bottom: 1px solid #eee
-    }
+<head>
+    <title>Hello, world!</title>
+    <%- include("../style") %>
+</head>
 
-    th,
-    td {
-        padding: 10px;
-    }
+<body>
 
-    .text-left {
-        text-align: left
-    }
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
 
-    .text-center {
-        text-align: center
-    }
+                <h1>List Categories</h1>
 
-    .text-right {
-        text-align: right
-    }
-</style>
-<h1>List Categories</h1>
+                <div class="search-form">
+                    <%- include("./search") %>
+                </div>
 
-<p>
-    <button id="deleteMulti">Delete</button>
+                <div class="table-responsive">
+                        <%- include("./table-data") %>
+                </div>
 
-    <a href="/admin/categories/create">Create New Cateogry</a>
-</p>
-<table style="width: 100%;" class="grid-data">
-    <thead>
-        <tr>
-            <th class="text-left">
-                <input type="checkbox" id="checkAll">
-            </th>
-            <th class="text-left">ID</th>
-            <th class="text-left">Name</th>
-            <th class="text-left">Status</th>
-            <th class="text-right">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% data.rows.forEach(item => { %>
-            <tr>
-                <td>
-                    <input type="checkbox" name="item-selected" value="<%= item.id %>">
-                </td>
-                <td>
-                    <%= item.id %>
-                </td>
-                <td>
-                    <%= item.name %>
-                </td>
-                <td>
-                    <%- item.formatStatus() %>
-                </td>
-                <td class="text-right">
-                    <a href="<%= item.getUrlView() %>">View</a>
-                    <a href="<%= item.getUrlEdit() %>">Edit</a>
-                    <a href="javascript:;" data-id="<%= item.id %>" class="btn-destroy">Delete</a>
-                </td>
-            </tr>
-            <% }) %>
-    </tbody>
-</table>
+            </div>
+        </div>
+    </div>
 
+    <%- include("../script") %>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script>
+    <script src="/backend/javascript/pages/category.js"></script>
+    <script>
+        Cateogry.init();
+    </script>
+</body>
 
-    function sendRequestDelete(data) {
-        $.ajax({
-            method: 'DELETE',
-            url: '/admin/categories/destroy',
-            dataType: 'JSON',
-            data: data,
-            success: function (res) {
-                if (res.success) {
-                    window.location.reload(true);
-                } else {
-                    alert(res.message);
-                }
-            }
-        });
-    }
-
-    function sendRequestDeleteMulti(data) {
-        $.ajax({
-            method: 'DELETE',
-            url: '/admin/categories/delete',
-            dataType: 'JSON',
-            data: data,
-            success: function (res) {
-                if (res.success) {
-                    window.location.reload(true);
-                } else {
-                    alert(res.message);
-                }
-            }
-        });
-    }
-
-    function getListItemSelected() {
-        var items = [];
-        $("input:checkbox[name='item-selected']").each(function () {
-            if ($(this).is(":checked")) items.push($(this).val());
-        });
-        return items;
-    }
-
-    $(document).ready(function () {
-
-        $('table.grid-data').on('click', '.btn-destroy', function () {
-            var id = $(this).data('id');
-            var willDelete = window.confirm("Are you sure?");
-            if (willDelete) sendRequestDelete({ id: id });
-        });
-
-        $("#checkAll").on('click', function () {
-            var status = $(this).is(":checked")
-            $("input:checkbox[name='item-selected']").each(function () {
-                $(this).prop("checked", status);
-            });
-        });
-
-        $("#deleteMulti").on('click', function () {
-            var items = getListItemSelected();
-            if (items.length) {
-                var willDelete = window.confirm("Are you sure?");
-                if (willDelete) sendRequestDeleteMulti({ id: items });
-            } else {
-                alert("select item");
-            }
-
-        })
-
-    });
-
-</script>
+</html>

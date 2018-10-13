@@ -1,62 +1,47 @@
 <% if(errors.length){ %>
-    <div style="color:red">
-        <strong>Errors!</strong>
+    <div class="alert alert-danger" role="alert">
         <ul style="margin-top: 30px">
-            <% errors.forEach (item => { %><li><%- item %></li><% }); %>
+            <% errors.forEach (item => { %>
+                <li><%- item %></li>
+            <% }); %>
         </ul>
-    </div>       
+    </div>     
 <% } %>     
 
-<%- (success.length) ? `<div style="color:green"><strong>${success}</strong></div>` : '' %>
+<%- (success.length) ? `<div class="alert alert-success" role="alert">${success}</div>` : '' %>
 
 <form action="<%= model.getFormAction() %>" method="POST">
-    <p>
-        <label>Name</label><br/>
-        <input type="text" name="name" value="<%= model.name %>"/>
-    </p>
-    <p>
-        <label>Description</label><br/>
-        <input type="text" name="description" value="<%= model.description %>"/>
-    </p>
-    <p>
-        <label>Image Url</label><br/>
-        <input type="text" name="image" value="<%= model.image %>"/>
-    </p>
-    <p>
-        <label>Status (<%= model.status %>)</label><br/>
-        <select name="status">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" value="<%= model.name %>" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <textarea name="description" class="form-control"><%= model.description %></textarea>
+    </div>
+    <div class="form-group">
+        <label>Image Url</label>
+        <input type="text" name="image" value="<%= model.image %>" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <select name="status" class="custom-select">
             <% model.getStatus().forEach(item=>{ %>
-                <option value="<%= item.value %>" <%= (item.value == model.status) ? "selected" : "" %> > <%= item.label %> </option>
+                <option value="<%= item.value %>" <%= (item.value == model.status) ? "selected" : "" %> > 
+                    <%= item.label %> 
+                </option>
             <% }) %>
         </select>
-    </p>
-    <p>
+    </div>
+
+    <div class="form-group">
         <% if(model.isNewRecord){ %>
-            <button type="submit">Create New</button>        
+            <button type="submit" class="btn btn-primary">Create New</button>        
         <% } else { %>
-            <button type="submit">Save Change</button>
+            <button type="submit" class="btn btn-info">Save Change</button>
         <% } %>
-        <button type="reset"> Backup Data </button>
-        <button type="button" id="clearForm"> Clear Form Data </button>
-    </p>
+
+        <a href="<%= model.getUrlList() %>" class="float-right btn btn-dark">Back</a>
+    </div>
 </form>
-
-<p>
-    <a href="<%= model.getUrlList() %>">Back</a>
-</p>
-
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script>
-
-    $(document).ready(function () {
-
-        $("#clearForm").on('click', function () {
-            $("input[type='text']").val('');
-
-        })
-
-    });
-
-</script>

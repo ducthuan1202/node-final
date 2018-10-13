@@ -1,2 +1,29 @@
-<h1>Create new</h1>
-<%- include('./form'); %>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Create New</title>
+    <%- include("../style") %>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1>Create new</h1>
+                <%- include('./form'); %>
+
+            </div>
+        </div>
+    </div>
+
+    <%- include("../script") %>
+    <script src="/backend/javascript/pages/category.js"></script>
+    <script>
+        Cateogry.init();
+    </script>
+</body>
+
+</html>

@@ -1,3 +1,30 @@
-<h1>Edit Cateogry <%= model.name %></h1>
+<!doctype html>
+<html lang="en">
 
-<%- include('./form'); %>
+<head>
+    <title>Edit</title>
+    <%- include("../style") %>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1>Edit Cateogry <%= model.name %></h1>
+
+                <%- include('./form'); %>
+
+            </div>
+        </div>
+    </div>
+
+    <%- include("../script") %>
+    <script src="/backend/javascript/pages/category.js"></script>
+    <script>
+        Cateogry.init();
+    </script>
+</body>
+
+</html>

@@ -98,6 +98,10 @@ module.exports = (sequelize, DataTypes) => {
     return this.getUrl(`${this.id}/edit`);
   }
 
+  Category.prototype.getUrlCreate = function () {
+    return this.getUrl(`create`);
+  }
+
   Category.prototype.getUrlList = function () {
     return this.getUrl();
   }

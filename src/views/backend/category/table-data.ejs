@@ -1,0 +1,49 @@
+<table class="table grid-data">
+    <thead>
+        <tr>
+            <th class="text-left">
+                <input type="checkbox" id="checkAll">
+            </th>
+            <th class="text-left">ID</th>
+            <th class="text-left">Name</th>
+            <th class="text-left">Status</th>
+            <th class="text-right">
+                <div class="btn-group" role="group">
+                    <a href="<%= model.getUrlCreate() %>" class="btn-group btn btn-info">Create New</a>
+                    <div class="btn-group" role="group">
+                        <button id="bulkGroup" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">Actions</button>
+                        <div class="dropdown-menu" aria-labelledby="bulkGroup">
+                            <a href="javascript:;" class="dropdown-item" id="deleteMulti">Delete Selected</a>
+                            <a class="dropdown-item" href="javascript:;">Export CSV</a>
+                        </div>
+                    </div>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% data.rows.forEach(item => { %>
+            <tr>
+                <td>
+                    <input type="checkbox" name="item-selected" value="<%= item.id %>" />
+                </td>
+                <td>
+                    <%= item.id %>
+                </td>
+                <td>
+                    <%= item.name %>
+                </td>
+                <td>
+                    <%- item.formatStatus() %>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="<%= item.getUrlView() %>" class="btn btn-secondary btn-sm">View</a>
+                        <a href="<%= item.getUrlEdit() %>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="javascript:;" data-id="<%= item.id %>" class="btn btn-danger btn-sm btn-destroy">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            <% }) %>
+    </tbody>
+</table>
