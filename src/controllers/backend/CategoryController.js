@@ -41,6 +41,7 @@ controller.list = (req, res) => {
         where: searchContidions,
         offset: offset,
         limit: limit,
+        order: [['id', 'DESC']]
     })
         .then(data => {
             const shared = {
