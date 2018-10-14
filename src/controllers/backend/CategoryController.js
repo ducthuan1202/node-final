@@ -1,5 +1,6 @@
 const helper = require("../../common/Helper");
 const Category = require("../../database/models").Category;
+const Paginate = require("../../common/Paginate");
 
 /** Function support */
 function getOldData(req, flashName = 'oldData') {
@@ -11,14 +12,18 @@ function getOldData(req, flashName = 'oldData') {
 const controller = {};
 
 controller.list = (req, res) => {
-
+    const limit = 10;
     const model = Category.build({});
     const searchContidions = {};
     const searchOptions = {
         sKeyword: (req.query.sKeyword || "").trim(),
         sStatus: parseInt(req.query.sStatus || 0),
+        sPage: isNaN(req.query.sPage) ? 1 : parseInt(req.query.sPage),
     };
     searchOptions.listStatus = model.getStatus();
+
+    let offset = (searchOptions.sPage - 1) * limit;
+    offset = (offset < 1) ? 1 : offset;
 
     /** filter by name */
     if (!helper.isEmpty(searchOptions.sKeyword)) {
@@ -32,12 +37,23 @@ controller.list = (req, res) => {
         searchContidions.status = searchOptions.sStatus;
     }
 
-    Category.findAndCountAll({ where: searchContidions })
+    Category.findAndCountAll({
+        where: searchContidions,
+        offset: offset,
+        limit: limit,
+    })
         .then(data => {
             const shared = {
                 model: model,
                 data: data,
                 searchOptions: searchOptions,
+                paginate: Paginate.paginate({
+                    totalItems: data.count,
+                    limit: limit,
+                    page: searchOptions.sPage,
+                    queries: req.query,
+                    url: (req.originalUrl.split("?"))[0]
+                }),
             };
             const view = helper.backendView("category/index");
             res.render(view, shared);
