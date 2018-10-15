@@ -1,7 +1,7 @@
 'use strict';
 
 const Faker = require('faker');
-const ArrayHelper = require('../common/Helper');
+const ArrayHelper = require('./Helper');
 
 /** create customer demo */
 exports.demoCustomer = () => {
@@ -17,7 +17,7 @@ exports.demoCustomer = () => {
     const postal_code = Faker.address.zipCode();
     const country = Faker.address.country();
 
-    const status = ArrayHelper.array_random(listStatus);
+    const status = ArrayHelper.arrayRandom(listStatus);
     const created_at = Faker.date.recent();
     const updated_at = created_at;
 
@@ -36,7 +36,7 @@ exports.demoCategory = () => {
     const description = Faker.lorem.paragraph();
     const image = Faker.image.avatar();
 
-    const status = ArrayHelper.array_random(listStatus);
+    const status = ArrayHelper.arrayRandom(listStatus);
     const created_at = Faker.date.recent();
     const updated_at = created_at;
 
@@ -55,12 +55,12 @@ exports.demoEmployees = () => {
     const first_name = Faker.name.firstName();
     const last_name = Faker.name.lastName();
     const name = `${first_name} ${last_name}`;
-    const extension = ArrayHelper.array_random(listExtension);
+    const extension = ArrayHelper.arrayRandom(listExtension);
     const email = Faker.internet.email();
     const office_id = 12;
     const job_title = Faker.name.jobTitle();
 
-    const status = ArrayHelper.array_random(listStatus);
+    const status = ArrayHelper.arrayRandom(listStatus);
     const created_at = Faker.date.recent();
     const updated_at = created_at;
 
@@ -83,7 +83,7 @@ exports.demoOffice = () => {
     const postal_code = Faker.address.zipCode();
     const territory = Faker.address.countryCode();
 
-    const status = ArrayHelper.array_random(listStatus);
+    const status = ArrayHelper.arrayRandom(listStatus);
     const created_at = Faker.date.recent();
     const updated_at = created_at;
 
@@ -107,7 +107,7 @@ exports.demoProduct = () => {
     const buy_price = Faker.commerce.price();
     const msrp = Faker.commerce.price();
 
-    const status = ArrayHelper.array_random(listStatus);
+    const status = ArrayHelper.arrayRandom(listStatus);
     const created_at = Faker.date.recent();
     const updated_at = created_at;
 
@@ -128,7 +128,7 @@ exports.demoOrder = () => {
 
     const comments = Faker.lorem.lines();
     const customer_id = 1;
-    const status = ArrayHelper.array_random(listStatus);
+    const status = ArrayHelper.arrayRandom(listStatus);
     const created_at = Faker.date.recent();
     const updated_at = created_at;
 
@@ -144,8 +144,8 @@ exports.demoOrderDetail = () => {
     const listOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const listProduct = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-    const order_id = ArrayHelper.array_random(listOrder);
-    const product_id = ArrayHelper.array_random(listProduct);
+    const order_id = ArrayHelper.arrayRandom(listOrder);
+    const product_id = ArrayHelper.arrayRandom(listProduct);
     const quantity_ordered = Faker.random.number();
 
     const price_each = Faker.commerce.price();
@@ -166,7 +166,7 @@ exports.demoPayment = () => {
     const payment_date = Faker.date.past();
     const amount = Faker.finance.amount();
 
-    const status = ArrayHelper.array_random(listStatus);
+    const status = ArrayHelper.arrayRandom(listStatus);
     const created_at = Faker.date.recent();
     const updated_at = created_at;
 

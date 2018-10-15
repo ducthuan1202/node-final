@@ -2,6 +2,7 @@
 
 Tên Gói (package) | Phiên Bản (version) | Chức Năng
 ---|---|---
+`faker`|4.1.0| Sử dụng để tạo dữ liệu demo
 `bcrypt`|3.0.0| Sử dụng để mã hóa, so sánh chuỗi mã hóa login
 `body-parser`|1.18.3| Sử dụng để lấy thông tin post form
 `connect-flash`|0.1.1| Sử dụng để set session alert

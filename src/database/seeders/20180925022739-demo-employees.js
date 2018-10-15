@@ -1,11 +1,11 @@
 'use strict';
 
-const BaseSeeder = require('../../common/seeding/BaseSeeder');
+const BaseSeeder = require('../../common/BaseSeeder');
 
 module.exports = {  
   up: (queryInterface, Sequelize) => { // sequelize db:seed:all
     const dataSeeding = [];
-    const limit = 10;
+    const limit = 100;
     for (let i = 0; i < limit; i++) {
       dataSeeding.push(BaseSeeder.demoEmployees());
     }

@@ -48,7 +48,7 @@ controller.list = (req, res) => {
                 model: model,
                 data: data,
                 searchOptions: searchOptions,
-                paginate: Paginate.paginate({
+                paginate: Paginate.init({
                     totalItems: data.count,
                     limit: limit,
                     page: searchOptions.sPage,

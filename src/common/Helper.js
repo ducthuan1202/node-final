@@ -50,5 +50,9 @@ module.exports = {
         if (isCall(input, "Object")) return Object.keys(input).length;        
         return true;
     },
+    // array 
+    arrayRandom: (array)=>{
+        return array[Math.floor(Math.random() * array.length)]
+    }
 
 };
