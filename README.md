@@ -44,3 +44,11 @@ sequelize init
 
 ## Ghi chú
 * file  `.gitkeep` sử dụng để giúp commit được folder trống lên repository và nếu thư mục đó có tên trong file `.gitignore` thì nó được override (sẽ được add và tracking).
+
+## Tạo file .pem
+- Save file từ trên đường dẫn [đây](https://raw.githubusercontent.com/anders94/https-authorized-clients/master/keys/ca.cnf) trên trình duyệt với tên `ca.cnf`
+- Mở giao diện commanline, chạy lệnh
+```sh
+openssl req -new -x509 -days 9999 -config ca.cnf -keyout ca-key.pem -out ca-cert.pem
+```
+=> sẽ tạo ra 2 file `ca-key.pem` và `ca-cert.pem` tại đường dẫn chạy lệnh trên
