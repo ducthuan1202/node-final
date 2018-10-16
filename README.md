@@ -52,3 +52,16 @@ sequelize init
 openssl req -new -x509 -days 9999 -config ca.cnf -keyout ca-key.pem -out ca-cert.pem
 ```
 => sẽ tạo ra 2 file `ca-key.pem` và `ca-cert.pem` tại đường dẫn chạy lệnh trên
+
+## Sử dụng docker
+- Xem tất cả các container
+docker ps
+
+- xóa bỏ 1 container đang chạy
+docker rm container-name
+
+- Xem tất cả các images đã cài về máy
+docker images
+
+- xóa bỏ 1 image đã cài đặt về máy
+docker rmi image-name
